@@ -1,46 +1,47 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
+import Main from "./Main";
 import "../styles/App.scss";
 import getApiData from "../services/Api";
-import MovieSceneList from "./MovieSceneList";
-import Filters from "./Filters";
+import MovieSceneDetail from "./MovieSceneDetail";
+import { Routes, Route } from "react-router-dom";
+import { matchPath, useLocation } from "react-router";
+import Footer from "./Footer";
 
 function App() {
   const [dataMovies, setDataMovies] = useState([]);
-  const [filterMovie, setFilterMovie] = useState('');
-  const [filterYears, setFilterYears] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (dataMovies.length === 0) {
-      getApiData().then((dataFromApi) => {
-        console.log(dataFromApi);
-        setDataMovies(dataFromApi);
-      });
-    }
-  });
+    getApiData().then((dataFromApi) => {
+      setLoading(false);
+      const orderedMovies = dataFromApi.sort((a, b) =>
+        a.movie > b.movie ? 1 : a.movie < b.movie ? -1 : 0
+      );
+      return setDataMovies(orderedMovies);
+    });
+  }, []);
 
-  const handleFilterMovie = (value) => {
-    setFilterMovie(value);
-  };
+  const { pathname } = useLocation();
+  const dataPath = matchPath("/movie/:movieDetail", pathname);
 
-  const handleFilterYear =(value) =>{
-    if (filterYears.includes(value)){
-    }
-  }
+  const movieDetail = dataPath !== null ? dataPath.params.movieDetail : null;
+  const movieFound = dataMovies.find(
+    (item) => item.id === parseInt(movieDetail)
+  );
 
   return (
-    <>
     <div>
       <Header />
-
-      <Filters
-        handleFilterMovie={handleFilterMovie}
-        handleFilterYear={handleFilterYear}
-      />
-      
-      <MovieSceneList />
+      <Routes>
+        <Route path="/" element={<Main loading={loading} dataMovies={dataMovies}/>} />
+        <Route
+          path="/movie/:movieDetail"
+          element={<MovieSceneDetail movieDetail={movieFound} />}
+        />
+      </Routes>
+      <Footer />
     </div>
-    </>
   );
 }
 

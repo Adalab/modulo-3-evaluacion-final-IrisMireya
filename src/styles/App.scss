@@ -1,40 +1,62 @@
+@font-face {
+  font-family: "Oleo";
+  src: url("./assets/fonts/OleoScript-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Courgette";
+  src: url("./assets/fonts/Courgette-Regular.ttf") format("truetype");
+}
+
 * {
-    margin: 0px;
-  }
-  nav {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-  .header-image{
-    width: 400px;
-  }
-  .title{
-      color:lightgreen;
-      font-family:fantasy;
-      font-size: 42px;
-      margin-top: 20px;
-  }
+  margin: 0px;
+  font-family: "Oleo";
+  background-color: rgb(238, 230, 230);
+}
+.loading_data {
+  color: rgb(165, 41, 41);
+  font-size: 24px;
+}
+.no_results {
+  color: rgb(165, 41, 41);
+  font-size: 24px;
+}
+.balls {
+  width: 2em;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .text{
-    color:lightgreen;
-    font-family:fantasy;
-    font-size: 24px;
-  }
+.balls div {
+  width: 0.3em;
+  height: 0.3em;
+  border-radius: 50%;
+  background-color: #fc2f70;
+}
 
-  .input_filter{
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    border: none;
-    width: 50%;
+.balls div:nth-of-type(1) {
+  transform: translateX(-100%);
+  animation: left-swing 0.5s ease-in alternate infinite;
+}
+
+.balls div:nth-of-type(3) {
+  transform: translateX(-95%);
+  animation: right-swing 0.5s ease-out alternate infinite;
+}
+
+@keyframes left-swing {
+  50%,
+  100% {
+    transform: translateX(95%);
   }
-  .filter__select{
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    border: none;
-    width: 15%;
+}
+
+@keyframes right-swing {
+  50% {
+    transform: translateX(-95%);
   }
-  .filters_container{
-  margin-top: 300px;
+  100% {
+    transform: translateX(100%);
   }
+}

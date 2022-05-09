@@ -1,0 +1,8 @@
+.movies__ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 25px;
+  grid-row-gap: 45px;
+  list-style: none;
+}

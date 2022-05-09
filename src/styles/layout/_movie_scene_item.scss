@@ -1,0 +1,30 @@
+.movie {
+  &__list {
+    text-decoration: none;
+  }
+  &__picture {
+    width: 250px;
+    height: 400px;
+    border-radius: 2rem;
+    margin-top: 8%;
+  }
+  &__title {
+    font-size: 32px;
+    color: rgb(10, 91, 10);
+  }
+  &__quote {
+    font-size: 20px;
+    color: rgb(40, 126, 40);
+    font-family: "Courgette";
+  }
+  &__year {
+    font-size: 20px;
+    color: rgb(44, 147, 112);
+  }
+  &__container {
+    text-align: center;
+    box-shadow: 0px 5px 5px rgba(229, 54, 54, 0.5);
+    border-radius: 50px;
+    border: none;
+  }
+}

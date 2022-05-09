@@ -1,0 +1,13 @@
+.footer {
+  width: 100%;
+  &__container {
+    text-align: center;
+    margin-top: 33px;
+    margin-bottom: 33px;
+  }
+  &__text {
+    color: rgb(165, 41, 41);
+    font-size: 24px;
+    text-decoration: none;
+  }
+}
